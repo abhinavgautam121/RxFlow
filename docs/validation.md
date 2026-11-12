@@ -7,7 +7,7 @@ This record distinguishes implemented behaviour from checks actually executed. D
 | Alembic initial schema + analytical views against PostgreSQL | Passed locally |
 | Synthetic generator reproducibility and relational insertion | Passed locally |
 | Backend formula, API, import, ML and integration tests | 46 passed locally |
-| Frontend interaction/format/API-error component tests | 7 passed locally |
+| Frontend interaction/format/API-error component tests | 8 passed locally, including prediction-form validity and submission |
 | TypeScript type check + Vite production build | Passed locally |
 | Ruff lint and formatting | Passed locally |
 | Database/API totals and stock reconcile to independent SQL views | Passed in pytest |
@@ -17,12 +17,14 @@ This record distinguishes implemented behaviour from checks actually executed. D
 | CSV atomic insert-only policy, auth, integrity and exports | Passed in pytest |
 | Five scenario types reproducible and bounded | Passed in pytest |
 | Docker clean build and Compose startup | Passed locally; PostgreSQL, API and frontend healthy |
-| Playwright five browser acceptance flows | CI configured; result pending |
-| Actual browser screenshots | CI capture configured; result pending |
+| Playwright five browser acceptance flows | Previous CI: 4 passed / 1 failed; prediction-form fix submitted for rerun |
+| Actual browser screenshots | Captured in the CI artifact by the passing overview and simulation flows |
 | Native Power BI Desktop / DAX execution | Not performed; guide and exports supplied |
 | Public hosted application | Not deployed; localhost Docker application supplied |
 
 Local browser-control tools were unavailable in the managed workspace. Browser acceptance and screenshot capture are therefore assigned to the repository's GitHub Actions workflow; they are not counted as locally verified.
+
+The browser run exposed a default prediction threshold rejected by the HTML number input's step constraint. A component regression test reproduced the invalid form before the step was corrected, then verified valid defaults, request submission and displayed prediction output.
 
 The first Docker build exceeded the workspace's disk quota. Build layers were simplified and temporary task build cache cleared before retrying. Both images then built successfully, and a fresh Compose database migrated, seeded, trained and launched all three healthy services. A host database-port override (5433) avoided the separate unit-test database during this check. Ordinary startup uses the documented defaults.
 

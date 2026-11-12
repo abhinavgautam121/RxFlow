@@ -304,7 +304,7 @@ export function Predictive({ filters, meta }: PageProps) {
               ["order_hour", "Order hour · IST", 0, 23, 1],
               ["order_weekday", "Weekday (Mon = 0)", 0, 6, 1],
               ["low_threshold", "Low-risk threshold", 0, 0.99, 0.05],
-              ["high_threshold", "High-risk threshold", 0.01, 1, 0.05],
+              ["high_threshold", "High-risk threshold", 0.01, 1, 0.01],
             ].map(([key, label, min, max, step]) => (
               <label key={String(key)}>
                 {String(label)}

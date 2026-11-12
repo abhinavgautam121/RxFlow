@@ -71,4 +71,5 @@ jobs:
           path: |
             docs/screenshots/*.png
             frontend/playwright-report/
+            frontend/test-results/results.json
             backend/artifacts/model_report.json

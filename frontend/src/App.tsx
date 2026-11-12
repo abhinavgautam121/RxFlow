@@ -249,6 +249,7 @@ export default function App() {
               City
               <select
                 value={filters.city}
+                aria-label="City"
                 onChange={(e) => update("city", e.target.value)}
               >
                 <option value="">All cities</option>
@@ -261,6 +262,7 @@ export default function App() {
               Fulfilment centre
               <select
                 value={filters.center}
+                aria-label="Fulfilment centre"
                 onChange={(e) => update("center", e.target.value)}
               >
                 <option value="">All centres</option>

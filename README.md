@@ -166,7 +166,9 @@ npm run test:e2e
 
 The automated suite covers metric populations, inventory eligibility, reorder rounding, SQL reconciliation, temporal feature leakage, model persistence, prediction bounds, scenario reproducibility, CSV atomicity, foreign keys, filters and exports. [Validation status](docs/validation.md) distinguishes executed checks from pending checks.
 
-The GitHub workflow runs browser acceptance and captures **actual application screenshots** as the `rxflow-evidence` artifact. See [screenshot instructions](docs/screenshots/README.md); no illustrative mockup is presented as a tested screenshot.
+**Verified:** 46 backend tests, 8 frontend tests and all 5 Playwright browser flows passed in [this successful CI run](https://github.com/abhinavgautam121/RxFlow/actions/runs/43320614304). Browser checks cover all nine pages, global filters, prediction submission, saved simulations, CSV export and phone navigation.
+
+The GitHub workflow captures **actual application screenshots** as the `rxflow-evidence` artifact. Download it from the [successful run](https://github.com/abhinavgautam121/RxFlow/actions/runs/43320614304) to view the overview and simulation screens. See [screenshot instructions](docs/screenshots/README.md); no illustrative mockup is presented as a tested screenshot.
 
 ## Power BI workflow
 

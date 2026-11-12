@@ -17,14 +17,17 @@ This record distinguishes implemented behaviour from checks actually executed. D
 | CSV atomic insert-only policy, auth, integrity and exports | Passed in pytest |
 | Five scenario types reproducible and bounded | Passed in pytest |
 | Docker clean build and Compose startup | Passed locally; PostgreSQL, API and frontend healthy |
-| Playwright five browser acceptance flows | Previous CI: 4 passed / 1 failed; prediction-form fix submitted for rerun |
-| Actual browser screenshots | Captured in the CI artifact by the passing overview and simulation flows |
+| Playwright five browser acceptance flows | All 5 passed in GitHub Actions |
+| Nine route workspaces, cohort filters, prediction, simulation, export and phone navigation | Passed in Playwright |
+| Actual browser screenshots | Captured in the successful run's rxflow-evidence artifact |
 | Native Power BI Desktop / DAX execution | Not performed; guide and exports supplied |
 | Public hosted application | Not deployed; localhost Docker application supplied |
 
 Local browser-control tools were unavailable in the managed workspace. Browser acceptance and screenshot capture are therefore assigned to the repository's GitHub Actions workflow; they are not counted as locally verified.
 
-The browser run exposed a default prediction threshold rejected by the HTML number input's step constraint. A component regression test reproduced the invalid form before the step was corrected, then verified valid defaults, request submission and displayed prediction output.
+**Verified successful run:** [Validate RxFlow — 43320614304](https://github.com/abhinavgautam121/RxFlow/actions/runs/43320614304), source commit `52535b03a59a2cd9ff240276a825ce59c9650092`. All 46 backend, 8 frontend and 5 browser tests passed. The run also passed migration, model training, SQL reconciliation, Ruff, TypeScript and the production build. Download the `rxflow-evidence` artifact on that run for actual overview/simulation screenshots, the Playwright HTML report, structured browser results and model report.
+
+An earlier browser run exposed a default prediction threshold rejected by the HTML number input's step constraint. A component regression test reproduced the invalid form before the step was corrected, then verified valid defaults, request submission and displayed prediction output. The final browser run confirms that correction end to end.
 
 The first Docker build exceeded the workspace's disk quota. Build layers were simplified and temporary task build cache cleared before retrying. Both images then built successfully, and a fresh Compose database migrated, seeded, trained and launched all three healthy services. A host database-port override (5433) avoided the separate unit-test database during this check. Ordinary startup uses the documented defaults.
 

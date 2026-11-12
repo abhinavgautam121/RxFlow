@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-rxflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-rxflow_local_only}
+      POSTGRES_DB: ${POSTGRES_DB:-rxflow}
+    ports:
+      - "127.0.0.1:${RXFLOW_DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-rxflow}:${POSTGRES_PASSWORD:-rxflow_local_only}@db:5432/${POSTGRES_DB:-rxflow}
+      ADMIN_API_KEY: ${ADMIN_API_KEY:-}
+      SEED_ORDERS: ${SEED_ORDERS:-30000}
+      MODEL_DIR: /artifacts
+    ports:
+      - "127.0.0.1:${RXFLOW_API_PORT:-8000}:8000"
+    volumes:
+      - model_artifacts:/artifacts
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health',timeout=3)"]
+      start_period: 180s
+      interval: 10s
+      timeout: 5s
+      retries: 12
+  frontend:
+    build:
+      context: frontend
+    ports:
+      - "127.0.0.1:${RXFLOW_WEB_PORT:-8080}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+volumes:
+  postgres_data:
+  model_artifacts:

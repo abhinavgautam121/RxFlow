@@ -1,0 +1,418 @@
+{
+  "rows": {
+    "orders": 30000,
+    "order_items": 44866,
+    "shipments": 30000,
+    "shipment_events": 228596,
+    "inventory_batches": 1000
+  },
+  "kpis": {
+    "total_orders": 30000,
+    "confirmed_orders": 28748,
+    "dispatched_orders": 28725,
+    "delivered_orders": 27706,
+    "eligible_delivered": 27706,
+    "excluded_delivered": 0,
+    "pending_orders": 144,
+    "cancelled_orders": 1252,
+    "delayed_delivered_orders": 9271,
+    "currently_overdue": 23,
+    "not_yet_due": 121,
+    "active_invalid_promise": 0,
+    "on_time": {
+      "value": 66.54,
+      "numerator": 18435,
+      "denominator": 27706
+    },
+    "first_attempt_success": {
+      "value": 89.42,
+      "numerator": 25577,
+      "denominator": 28604
+    },
+    "failed_first_attempts": 3027,
+    "cancellation_rate": {
+      "value": 4.17,
+      "numerator": 1252,
+      "denominator": 30000
+    },
+    "delivery_failure_rate": {
+      "value": 1.98,
+      "numerator": 568,
+      "denominator": 28725
+    },
+    "avg_order_to_dispatch_hours": 4.34,
+    "avg_transit_hours": 20.22,
+    "avg_fulfilment_hours": 24.56,
+    "median_delivery_hours": 23.900941561527777,
+    "p90_delivery_hours": 34.41530839972222,
+    "cost_per_successful_delivery": 54.91,
+    "shipping_cost": 1521367.23,
+    "sla_mix": {
+      "SDD": {
+        "value": 22.49,
+        "numerator": 6746,
+        "denominator": 30000
+      },
+      "NDD": {
+        "value": 59.53,
+        "numerator": 17859,
+        "denominator": 30000
+      },
+      "OTHER": {
+        "value": 17.98,
+        "numerator": 5395,
+        "denominator": 30000
+      }
+    }
+  },
+  "model": {
+    "version": "rxflow-logistic_regression-v1-3e36f9fb9d",
+    "selected_model": "logistic_regression",
+    "selection_reason": "Highest validation PR-AUC; decision threshold maximises validation F1. Test set was not used for selection.",
+    "trained_at": "2026-11-12T15:44:10.222023+00:00",
+    "features": [
+      "distance_band_km",
+      "order_to_dispatch_hours",
+      "picking_hours",
+      "packing_hours",
+      "backlog_at_dispatch",
+      "order_hour",
+      "order_weekday",
+      "remaining_promise_hours",
+      "zone_id",
+      "fulfillment_center_id",
+      "delivery_partner_id",
+      "promised_service_level"
+    ],
+    "models": {
+      "logistic_regression": {
+        "validation": {
+          "roc_auc": 0.924286841929472,
+          "pr_auc": 0.8933886302761508,
+          "precision": 0.8203309692671394,
+          "recall": 0.7685492801771872,
+          "f1": 0.793596340766152,
+          "brier_score": 0.09496602616835573,
+          "confusion_matrix": [
+            [
+              3310,
+              304
+            ],
+            [
+              418,
+              1388
+            ]
+          ],
+          "threshold": 0.39999999999999997,
+          "sample_size": 5420,
+          "positive_count": 1806,
+          "positive_share": 0.333210332103321,
+          "calibration": [
+            {
+              "predicted": 0.0024931510543207635,
+              "observed": 0.0
+            },
+            {
+              "predicted": 0.020475762475305654,
+              "observed": 0.03249630723781388
+            },
+            {
+              "predicted": 0.06380039280678264,
+              "observed": 0.084070796460177
+            },
+            {
+              "predicted": 0.12577399545933782,
+              "observed": 0.1358936484490399
+            },
+            {
+              "predicted": 0.22176881916682628,
+              "observed": 0.20088626292466766
+            },
+            {
+              "predicted": 0.41609002378607535,
+              "observed": 0.4085545722713864
+            },
+            {
+              "predicted": 0.8382363790696242,
+              "observed": 0.8079763663220089
+            },
+            {
+              "predicted": 0.9822195109596361,
+              "observed": 0.995575221238938
+            }
+          ]
+        },
+        "test": {
+          "roc_auc": 0.9262397011618787,
+          "pr_auc": 0.8963713341799961,
+          "precision": 0.8136467889908257,
+          "recall": 0.7732970027247956,
+          "f1": 0.7929589270746018,
+          "brier_score": 0.09217002334908792,
+          "confusion_matrix": [
+            [
+              3382,
+              325
+            ],
+            [
+              416,
+              1419
+            ]
+          ],
+          "threshold": 0.39999999999999997,
+          "sample_size": 5542,
+          "positive_count": 1835,
+          "positive_share": 0.331107903284013,
+          "calibration": [
+            {
+              "predicted": 0.0025716364233584967,
+              "observed": 0.0
+            },
+            {
+              "predicted": 0.02301388136394093,
+              "observed": 0.03896103896103896
+            },
+            {
+              "predicted": 0.06395579626716973,
+              "observed": 0.07514450867052024
+            },
+            {
+              "predicted": 0.12401192481146363,
+              "observed": 0.11688311688311688
+            },
+            {
+              "predicted": 0.22383229975204175,
+              "observed": 0.227994227994228
+            },
+            {
+              "predicted": 0.42256899033004747,
+              "observed": 0.3511560693641618
+            },
+            {
+              "predicted": 0.854065644742892,
+              "observed": 0.8455988455988456
+            },
+            {
+              "predicted": 0.9833172683012794,
+              "observed": 0.9927849927849928
+            }
+          ]
+        }
+      },
+      "random_forest": {
+        "validation": {
+          "roc_auc": 0.9225212214588157,
+          "pr_auc": 0.8881698128911067,
+          "precision": 0.8075818495117748,
+          "recall": 0.778516057585825,
+          "f1": 0.7927826332111644,
+          "brier_score": 0.10006675914097711,
+          "confusion_matrix": [
+            [
+              3279,
+              335
+            ],
+            [
+              400,
+              1406
+            ]
+          ],
+          "threshold": 0.3,
+          "sample_size": 5420,
+          "positive_count": 1806,
+          "positive_share": 0.333210332103321,
+          "calibration": [
+            {
+              "predicted": 0.03676541066534302,
+              "observed": 0.0014749262536873156
+            },
+            {
+              "predicted": 0.09712327633348941,
+              "observed": 0.028064992614475627
+            },
+            {
+              "predicted": 0.1453166241403703,
+              "observed": 0.09144542772861357
+            },
+            {
+              "predicted": 0.17699864961014794,
+              "observed": 0.1329394387001477
+            },
+            {
+              "predicted": 0.21504696615624957,
+              "observed": 0.206794682422452
+            },
+            {
+              "predicted": 0.3166387774171953,
+              "observed": 0.4056047197640118
+            },
+            {
+              "predicted": 0.7563615576091193,
+              "observed": 0.8138847858197932
+            },
+            {
+              "predicted": 0.9202250023166639,
+              "observed": 0.9852507374631269
+            }
+          ]
+        },
+        "test": {
+          "roc_auc": 0.9250770138827126,
+          "pr_auc": 0.8916882677459832,
+          "precision": 0.7980984340044742,
+          "recall": 0.7776566757493188,
+          "f1": 0.7877449627380624,
+          "brier_score": 0.09598155878102736,
+          "confusion_matrix": [
+            [
+              3346,
+              361
+            ],
+            [
+              408,
+              1427
+            ]
+          ],
+          "threshold": 0.3,
+          "sample_size": 5542,
+          "positive_count": 1835,
+          "positive_share": 0.331107903284013,
+          "calibration": [
+            {
+              "predicted": 0.03858003322086277,
+              "observed": 0.001443001443001443
+            },
+            {
+              "predicted": 0.10256578447628757,
+              "observed": 0.03318903318903319
+            },
+            {
+              "predicted": 0.1450112451003625,
+              "observed": 0.07947976878612717
+            },
+            {
+              "predicted": 0.17652260210877205,
+              "observed": 0.11976911976911978
+            },
+            {
+              "predicted": 0.215601144727671,
+              "observed": 0.22510822510822512
+            },
+            {
+              "predicted": 0.321980341597062,
+              "observed": 0.3554913294797688
+            },
+            {
+              "predicted": 0.7787124714412547,
+              "observed": 0.84992784992785
+            },
+            {
+              "predicted": 0.9204573180739313,
+              "observed": 0.9841269841269841
+            }
+          ]
+        }
+      },
+      "rule_baseline": {
+        "test": {
+          "roc_auc": 0.5824962568055576,
+          "pr_auc": 0.3766690488466969,
+          "precision": 0.4128329297820823,
+          "recall": 0.5574931880108992,
+          "f1": 0.4743797820542546,
+          "brier_score": 0.29815229159148315,
+          "confusion_matrix": [
+            [
+              2252,
+              1455
+            ],
+            [
+              812,
+              1023
+            ]
+          ],
+          "threshold": 0.5,
+          "sample_size": 5542,
+          "positive_count": 1835,
+          "positive_share": 0.331107903284013,
+          "calibration": [
+            {
+              "predicted": 0.10000000000000038,
+              "observed": 0.2650130548302872
+            },
+            {
+              "predicted": 0.7999999999999684,
+              "observed": 0.4128329297820823
+            }
+          ]
+        }
+      }
+    },
+    "split": {
+      "train": 16489,
+      "validation": 5420,
+      "test": 5542,
+      "train_label_end": "2026-09-03T03:14:25.702456+00:00",
+      "validation_dispatch_start": "2026-09-03T03:47:27.357385+00:00",
+      "validation_label_end": "2026-10-07T15:10:31.883641+00:00",
+      "test_dispatch_start": "2026-10-07T15:18:19.102196+00:00"
+    },
+    "importance": [
+      {
+        "feature": "remaining_promise_hours",
+        "importance": 0.36548
+      },
+      {
+        "feature": "distance_band_km",
+        "importance": 0.0447
+      },
+      {
+        "feature": "delivery_partner_id",
+        "importance": 0.02514
+      },
+      {
+        "feature": "zone_id",
+        "importance": 0.02191
+      },
+      {
+        "feature": "promised_service_level",
+        "importance": 0.0214
+      },
+      {
+        "feature": "picking_hours",
+        "importance": 0.00078
+      },
+      {
+        "feature": "fulfillment_center_id",
+        "importance": 0.00058
+      },
+      {
+        "feature": "backlog_at_dispatch",
+        "importance": 0.00057
+      },
+      {
+        "feature": "order_to_dispatch_hours",
+        "importance": 0.00044
+      },
+      {
+        "feature": "order_hour",
+        "importance": 0.00014
+      },
+      {
+        "feature": "order_weekday",
+        "importance": 5e-05
+      },
+      {
+        "feature": "packing_hours",
+        "importance": 4e-05
+      }
+    ],
+    "limitations": [
+      "Fictional operations; no evidence of real-world performance.",
+      "No causal explanations; permutation importance is global validation association.",
+      "Probabilities are uncalibrated; inspect reliability curve and Brier score.",
+      "Synthetic generating patterns may make evaluation optimistic.",
+      "No historical partner aggregates are used; this avoids look-ahead feature leakage."
+    ]
+  }
+}

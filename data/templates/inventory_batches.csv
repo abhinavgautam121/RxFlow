@@ -1,0 +1,1 @@
+batch_id,sku_id,fulfillment_center_id,batch_number,quantity_received,quantity_available,reserved_quantity,quarantined_quantity,received_date,expiry_date,unit_cost,batch_status

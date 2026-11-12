@@ -1,0 +1,1 @@
+shipment_id,order_id,delivery_partner_id,dispatch_at,delivery_attempt_count,first_attempt_success,delivered_at,shipment_status,distance_band_km,shipping_cost,backlog_at_dispatch,picking_hours,packing_hours

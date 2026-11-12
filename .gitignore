@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+node_modules/
+dist/
+.env
+*.db
+*.joblib
+artifacts/
+data/generated/
+powerbi/exports/
+test-results/
+playwright-report/
+*.egg-info/
+*.tsbuildinfo

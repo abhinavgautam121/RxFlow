@@ -1,0 +1,11 @@
+.git
+.venv
+frontend/node_modules
+frontend/dist
+backend/artifacts
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+data/generated
+powerbi/exports
+.env
